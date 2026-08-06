@@ -1,3 +1,5 @@
-.env
 owusuaa
 __pycache__
+.env
+.env.*
+!.env.example

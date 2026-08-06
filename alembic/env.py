@@ -15,12 +15,9 @@ from sqlalchemy import engine_from_config, pool
 # Make the project root importable when running `alembic` from the repo root.
 sys.path.append(os.getcwd())
 
-from app.core.config import settings           # noqa: E402
-from app.models import Base              # noqa: E402
-from app.models.user import User  # noqa: E402
-
-# --- Import models here so Alembic's autogenerate can see them (Module 2+) ---
-# from app.models import user, product, category, order  # noqa: E402,F401
+from app.core.config import settings
+from app.models.base import Base
+import app.models
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
