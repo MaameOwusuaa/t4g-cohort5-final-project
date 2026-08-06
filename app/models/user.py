@@ -34,3 +34,16 @@ class User(BaseModel):
         default=True,
         nullable=False,
     )
+"""
+    orders: Mapped[list["Order"]] = relationship(
+    back_populates="user",
+    cascade="all, delete-orphan",
+)
+
+    cart: Mapped["Cart"] = relationship(
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+
+"""
