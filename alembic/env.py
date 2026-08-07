@@ -17,7 +17,7 @@ sys.path.append(os.getcwd())
 
 from app.core.config import settings
 from app.models.base import Base
-import app.models
+from app.models.category import Category  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
