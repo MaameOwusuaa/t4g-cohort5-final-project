@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
-from app.routers import auth, users, categories
+from app.routers import auth, users, categories, products
 
 app = FastAPI(title="Conniecomes Beauty Salon API", version="1.0.0", description="API for Conniecomes Beauty Salon")
 router = APIRouter()
@@ -15,6 +15,8 @@ app.include_router(router)
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(categories.router)
+app.include_router(products.router)
+
 @app.get("/")
 def root():
     return {
