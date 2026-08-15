@@ -19,6 +19,16 @@ from app.core.config import settings
 from app.models.base import Base
 from app.models.category import Category  # noqa: F401
 
+from app.models import (
+    User,
+    Category,
+    Product,
+    Cart,
+    CartItem,
+    Order,
+    OrderItem,
+)
+
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 

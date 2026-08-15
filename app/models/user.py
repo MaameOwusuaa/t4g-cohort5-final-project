@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import BaseModel
 
@@ -34,16 +34,27 @@ class User(BaseModel):
         default=True,
         nullable=False,
     )
-"""
+
+    """
     orders: Mapped[list["Order"]] = relationship(
     back_populates="user",
     cascade="all, delete-orphan",
 )
-
+    
     cart: Mapped["Cart"] = relationship(
         back_populates="user",
         uselist=False,
         cascade="all, delete-orphan",
     )
+    """
+    
+    cart = relationship(
+    "Cart",
+    back_populates="user",
+    uselist=False,
+)
 
-"""
+    orders = relationship(
+        "Order",
+        back_populates="user",
+    )

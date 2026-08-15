@@ -42,3 +42,8 @@ class Product(BaseModel):
         "Category",
         back_populates="products",
     )
+
+    cart_items = relationship(
+    "CartItem",
+    back_populates="product",
+)

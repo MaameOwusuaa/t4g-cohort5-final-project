@@ -1,11 +1,15 @@
+from urllib import request
+
 from app.models.user import User
 from app.repositories.user_repositories import UserRepository
+from app.schemas import user
 from app.schemas.user import UserCreate
-from app.utils.security import hash_password
 from app.schemas.token import Token
 from app.schemas.user import UserLogin
-from app.utils.security import create_access_token, verify_password
+from app.core.security import verify_password, hash_password
+from app.utils.security import create_access_token
 
+print("VERIFY PASSWORD FROM:", verify_password.__module__)
 
 class UserService:
     def __init__(self, repository: UserRepository):
@@ -40,8 +44,21 @@ class UserService:
 
         user = self.repository.get_by_email(request.email)
 
+
         if not user:
             raise ValueError("Invalid email or password.")
+
+
+        
+
+        print("EMAIL:", request.email)
+        print("USER ID:", user.id)
+        print("PASSWORD CHECK:", verify_password(
+            request.password,
+            user.hashed_password,
+        ))
+        print("USER ACTIVE:", user.is_active)
+        
 
         if not verify_password(
             request.password,
